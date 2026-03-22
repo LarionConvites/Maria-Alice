@@ -1,0 +1,99 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  background: #000;
+  overflow-x: hidden;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.convite-wrapper {
+  width: 100%;
+}
+
+.convite-container {
+  width: 100%;
+  position: relative;
+  /* força o container a ter a mesma proporção do SVG: 1080 x 6922.4199 */
+  padding-bottom: calc(6922.4199 / 1080 * 100%);
+  height: 0;
+}
+
+.convite-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/*
+  Base de cálculo: 1080px (largura original do SVG)
+  Altura total:    6922.4199px
+
+  Botão:
+    W = 803.0568px  → 803.0568 / 1080 = 74.3571%
+    H = 209.97px    → 209.97   / 6922.4199 = 3.0333%  (% da altura do container)
+    X = 498.5616px  → 498.5616 / 1080 = 46.1631%
+
+  Y de cada botão (% da altura total 6922.4199):
+    btn1: 3735.015  / 6922.4199 = 53.9562%
+    btn2: 3985.0786 / 6922.4199 = 57.5680%
+    btn3: 4206.0149 / 6922.4199 = 60.7584%
+*/
+
+.btn-invisivel {
+  position: absolute;
+  width:  74.3571%;
+  height: 3.0333%;
+  left:   9.5000%;
+
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+#btn1 { top: 52.5000%; }
+#btn2 { top: 56.1000%; }
+#btn3 { top: 59.3000%; }
+
+/* ================================
+   Modal de confirmação
+   ================================ */
+#modal-confirmacao {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-family: 'Forum', serif;
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 50px;
+  white-space: nowrap;
+  pointer-events: none;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+#modal-confirmacao.visivel {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
